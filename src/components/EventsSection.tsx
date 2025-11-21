@@ -59,15 +59,15 @@ const events = [
 
 export const EventsSection = () => {
   return (
-    <section className="py-20 px-4 relative">
+    <section className="py-16 sm:py-20 md:py-24 px-4 relative">
       <div className="container mx-auto max-w-7xl">
         <motion.h2 
-          className="text-5xl md:text-6xl font-bold mb-16 text-center text-gradient-aurora"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-10 sm:mb-12 md:mb-16 text-center text-gradient-aurora"
           style={{ fontFamily: "'Cinzel', serif" }}
           initial={{ opacity: 0, y: 50, rotateX: -20 }}
           whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
           transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-50px" }}
         >
           Constellation of Events
         </motion.h2>
@@ -76,23 +76,23 @@ export const EventsSection = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6"
         >
           {events.map((event, index) => (
             <motion.div
               key={index}
               variants={cardVariants}
               whileHover={{ scale: 1.05, y: -5 }}
-              className="bg-card/60 backdrop-blur-md rounded-2xl p-6 border border-border hover:border-primary transition-all cursor-pointer group"
+              className="bg-card/60 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 border border-border hover:border-primary transition-all cursor-pointer group"
             >
               <div className="flex justify-between items-start mb-2">
-                <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                <h3 className="text-base sm:text-lg md:text-xl font-bold text-foreground group-hover:text-primary transition-colors">
                   {event.name}
                 </h3>
-                <div className="flex gap-1">
+                <div className="flex gap-0.5 sm:gap-1">
                   {[...Array(event.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-accent text-accent" />
+                    <Star key={i} className="w-3 h-3 sm:w-4 sm:h-4 fill-accent text-accent" />
                   ))}
                 </div>
               </div>

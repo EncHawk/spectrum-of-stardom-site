@@ -8,23 +8,23 @@ export const RegisterSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="register-section" ref={ref} className="py-20 px-4 relative">
+    <section id="register-section" ref={ref} className="py-16 sm:py-20 md:py-24 px-4 relative">
       <div className="container mx-auto max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          className="text-center mb-8 sm:mb-10 md:mb-12"
         >
           <motion.h2 
-            className="text-5xl md:text-6xl font-bold mb-6 text-gradient-aurora"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-gradient-aurora"
             style={{ fontFamily: "'Cinzel', serif" }}
           >
             Launch Your Stardom
           </motion.h2>
           
           <motion.p
-            className="text-xl md:text-2xl text-foreground/90 max-w-3xl mx-auto leading-relaxed"
+            className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-foreground/90 max-w-3xl mx-auto leading-relaxed px-4"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -33,13 +33,13 @@ export const RegisterSection = () => {
           </motion.p>
           
           <motion.div
-            className="flex items-center justify-center gap-2 mt-6 text-accent"
+            className="flex items-center justify-center gap-2 mt-4 sm:mt-6 text-accent"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <Rocket className="w-8 h-8" />
-            <p className="text-2xl font-bold">Your constellation awaits!</p>
+            <Rocket className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
+            <p className="text-lg sm:text-xl md:text-2xl font-bold">Your constellation awaits!</p>
           </motion.div>
         </motion.div>
 
@@ -47,18 +47,18 @@ export const RegisterSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="bg-card/50 backdrop-blur-md rounded-3xl p-12 border-2 border-primary aurora-glow"
+          className="bg-card/50 backdrop-blur-md rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 border-2 border-primary aurora-glow"
         >
-          <div className="aspect-video bg-background/30 rounded-2xl flex items-center justify-center">
-            <div className="text-center space-y-4">
+          <div className="aspect-video bg-background/30 rounded-xl sm:rounded-2xl flex items-center justify-center">
+            <div className="text-center space-y-3 sm:space-y-4 px-4">
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
               >
-                <Rocket className="w-16 h-16 text-primary mx-auto" />
+                <Rocket className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 text-primary mx-auto" />
               </motion.div>
-              <p className="text-2xl font-bold text-gradient-cosmic">Registration Form</p>
-              <p className="text-muted-foreground">
+              <p className="text-xl sm:text-2xl font-bold text-gradient-cosmic">Registration Form</p>
+              <p className="text-sm sm:text-base text-muted-foreground">
                 (Tally form will be embedded here)
               </p>
             </div>
@@ -69,12 +69,12 @@ export const RegisterSection = () => {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-12 text-center space-y-4"
+          className="mt-8 sm:mt-10 md:mt-12 text-center space-y-3 sm:space-y-4 px-4"
         >
-          <p className="text-lg text-muted-foreground">
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground">
             For queries, contact us at <a href="mailto:ranvita@cmr.edu.in" className="text-primary hover:text-secondary transition-colors underline">ranvita@cmr.edu.in</a>
           </p>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-xs sm:text-sm text-muted-foreground">
             Limited slots available. Register early to secure your spot!
           </p>
         </motion.div>

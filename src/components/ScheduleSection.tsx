@@ -59,15 +59,15 @@ export const ScheduleSection = () => {
   const dayColor = activeDay === 'day1' ? 'primary' : 'accent';
 
   return (
-    <section className="py-20 px-4 relative">
+    <section className="py-16 sm:py-20 md:py-24 px-4 relative">
       <div className="container mx-auto max-w-6xl">
         <motion.h2 
-          className="text-5xl md:text-6xl font-bold mb-12 text-center text-gradient-cosmic"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 sm:mb-10 md:mb-12 text-center text-gradient-cosmic"
           style={{ fontFamily: "'Cinzel', serif" }}
           initial={{ opacity: 0, y: 50, rotateX: -20 }}
           whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
           transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-50px" }}
         >
           Event Schedule
         </motion.h2>
@@ -78,11 +78,11 @@ export const ScheduleSection = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
-          className="flex justify-center gap-4 mb-12"
+          className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-8 sm:mb-10 md:mb-12"
         >
           <motion.button
             onClick={() => setActiveDay('day1')}
-            className={`px-8 py-4 rounded-full text-lg font-bold transition-all ${
+            className={`px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold transition-all ${
               activeDay === 'day1' 
                 ? 'bg-primary text-primary-foreground cosmic-glow' 
                 : 'bg-card text-muted-foreground border border-border'
@@ -94,7 +94,7 @@ export const ScheduleSection = () => {
           </motion.button>
           <motion.button
             onClick={() => setActiveDay('day2')}
-            className={`px-8 py-4 rounded-full text-lg font-bold transition-all ${
+            className={`px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold transition-all ${
               activeDay === 'day2' 
                 ? 'bg-accent text-accent-foreground star-glow' 
                 : 'bg-card text-muted-foreground border border-border'
@@ -111,15 +111,15 @@ export const ScheduleSection = () => {
           variants={tableVariants}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-50px" }}
           key={activeDay}
-          className="bg-card/50 backdrop-blur-md rounded-3xl p-8 border border-border"
+          className="bg-card/50 backdrop-blur-md rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 border border-border"
         >
-          <h3 className={`text-3xl font-bold mb-8 text-center text-${dayColor}`}>
+          <h3 className={`text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center text-${dayColor}`}>
             {dayTitle}
           </h3>
           
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {schedule.map((item, index) => (
               <motion.div
                 key={index}
@@ -127,15 +127,17 @@ export const ScheduleSection = () => {
                 variants={rowVariants}
                 initial="hidden"
                 whileInView="show"
-                viewport={{ once: true, margin: "-50px" }}
-                className="flex items-center gap-4 p-4 bg-background/30 rounded-xl hover:bg-background/50 transition-all"
+                viewport={{ once: true, margin: "-30px" }}
+                className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 p-3 sm:p-4 bg-background/30 rounded-lg sm:rounded-xl hover:bg-background/50 transition-all"
               >
-                <Clock className={`w-5 h-5 text-${dayColor}`} />
-                <span className="text-lg font-semibold min-w-[100px]">{item.time}</span>
-                <div className="flex-1">
-                  <p className="text-lg font-medium">{item.event}</p>
-                  <p className="text-sm text-muted-foreground flex items-center gap-1">
-                    <Calendar className="w-4 h-4" />
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <Clock className={`w-4 h-4 sm:w-5 sm:h-5 text-${dayColor}`} />
+                  <span className="text-sm sm:text-base md:text-lg font-semibold min-w-[80px] sm:min-w-[100px]">{item.time}</span>
+                </div>
+                <div className="flex-1 pl-6 sm:pl-0">
+                  <p className="text-sm sm:text-base md:text-lg font-medium">{item.event}</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground flex items-center gap-1 mt-1">
+                    <Calendar className="w-3 h-3 sm:w-4 sm:h-4" />
                     {item.venue}
                   </p>
                 </div>

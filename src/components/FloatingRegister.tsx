@@ -9,7 +9,7 @@ export const FloatingRegister = () => {
   return (
     <motion.button
       onClick={scrollToRegister}
-      className="fixed bottom-8 right-8 z-50 flex items-center gap-2 px-6 py-4 rounded-full bg-primary text-primary-foreground font-bold text-lg cosmic-glow border-2 border-secondary shadow-2xl group"
+      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 z-50 flex items-center gap-2 px-4 py-3 sm:px-5 sm:py-3.5 md:px-6 md:py-4 rounded-full bg-primary text-primary-foreground font-bold text-sm sm:text-base md:text-lg cosmic-glow border-2 border-secondary shadow-2xl group"
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5, delay: 1.5 }}
@@ -27,7 +27,7 @@ export const FloatingRegister = () => {
           ease: "linear"
         }}
       >
-        <Sparkles className="w-6 h-6" />
+        <Sparkles className="w-5 h-5 sm:w-5.5 sm:h-5.5 md:w-6 md:h-6" />
       </motion.div>
       
       <span className="hidden sm:inline">Register Now</span>
@@ -36,7 +36,7 @@ export const FloatingRegister = () => {
         animate={{ y: [0, 5, 0] }}
         transition={{ duration: 1.5, repeat: Infinity }}
       >
-        <ChevronDown className="w-5 h-5" />
+        <ChevronDown className="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5" />
       </motion.div>
       
       {/* Pulsing ring effect */}
