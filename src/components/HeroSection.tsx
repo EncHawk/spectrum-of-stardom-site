@@ -99,21 +99,21 @@ export const HeroSection = () => {
       className="relative overflow-hidden"
     >
       {/* Main Hero */}
-      <div className="min-h-screen flex items-center justify-center relative px-4 py-20">
+      <div className="min-h-screen flex items-center justify-center relative px-4 sm:px-6 py-12 sm:py-20">
         {/* Large faint outlined background text */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
           <div className="text-center">
-            <div className="hero-outline font-extrabold text-[35vw] md:text-[25vw] leading-none tracking-tighter">
+            <div className="hero-outline font-extrabold text-[40vw] sm:text-[35vw] md:text-[25vw] leading-none tracking-tighter">
               RANVITA
             </div>
-            <div className="hero-outline font-extrabold text-[35vw] md:text-[25vw] leading-none tracking-tighter mt-[-6vw]">
+            <div className="hero-outline font-extrabold text-[40vw] sm:text-[35vw] md:text-[25vw] leading-none tracking-tighter mt-[-8vw] sm:mt-[-6vw]">
               2026
             </div>
           </div>
         </div>
 
-        {/* 3D Background Elements */}
-        <div className="absolute inset-0 opacity-30">
+        {/* 3D Background Elements - Hidden on mobile for performance */}
+        <div className="absolute inset-0 opacity-20 sm:opacity-30 hidden sm:block">
           <Canvas camera={{ position: [0, 0, 8], fov: 75 }}>
             <ambientLight intensity={0.5} />
             <pointLight position={[10, 10, 10]} intensity={1} />
@@ -136,15 +136,15 @@ export const HeroSection = () => {
             {/* Main Title with unique font */}
             <div className="relative inline-block z-10">
               <motion.h1 
-                className="hero-font text-gradient-aurora text-[14vw] md:text-[10vw] lg:text-[8vw] leading-none"
+                className="hero-font text-gradient-aurora text-[18vw] sm:text-[14vw] md:text-[10vw] lg:text-[8vw] leading-none"
                 style={{
-                  filter: 'drop-shadow(0 0 30px rgba(255, 20, 147, 0.6)) drop-shadow(0 0 60px rgba(0, 255, 255, 0.4))',
+                  filter: 'drop-shadow(0 0 20px rgba(255, 20, 147, 0.6)) drop-shadow(0 0 40px rgba(0, 255, 255, 0.4))',
                   WebkitFontSmoothing: 'antialiased',
                 }}
               >
                 RANVITA
                 <br />
-                <span className="text-[18vw] md:text-[14vw] lg:text-[11vw]">2026</span>
+                <span className="text-[22vw] sm:text-[18vw] md:text-[14vw] lg:text-[11vw]">2026</span>
               </motion.h1>
 
               {/* Animated glow layers */}
@@ -168,18 +168,18 @@ export const HeroSection = () => {
             </div>
 
             <motion.div 
-              className="max-w-3xl mx-auto mt-16 space-y-4"
+              className="max-w-3xl mx-auto mt-8 sm:mt-12 md:mt-16 space-y-4 px-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 4 }}
             >
-              <p className="text-base md:text-lg text-foreground/90 font-light tracking-wide">
+              <p className="text-sm sm:text-base md:text-lg text-foreground/90 font-light tracking-wide">
                 Organised by <span className="text-primary font-semibold">CMR University</span> — an <span className="text-secondary font-semibold">Inter‑University Fest</span> celebrating talent, creativity and competitive spirit across campuses.
               </p>
             </motion.div>
             
             <motion.div
-              className="mt-12"
+              className="mt-8 sm:mt-10 md:mt-12"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 4.3 }}
@@ -188,7 +188,7 @@ export const HeroSection = () => {
                 onClick={() => {
                   document.getElementById('register-section')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="px-12 py-4 text-xl font-bold rounded-full cosmic-glow bg-card border-2 border-primary hover:bg-primary/20 transition-all"
+                className="px-8 sm:px-10 md:px-12 py-3 sm:py-3.5 md:py-4 text-base sm:text-lg md:text-xl font-bold rounded-full cosmic-glow bg-card border-2 border-primary hover:bg-primary/20 transition-all"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -201,7 +201,7 @@ export const HeroSection = () => {
 
       {/* Video Showcase Section */}
       <motion.div 
-        className="relative py-32 px-4"
+        className="relative py-16 sm:py-24 md:py-32 px-4"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
@@ -213,27 +213,27 @@ export const HeroSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-10 sm:mb-12 md:mb-16"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gradient-aurora mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gradient-aurora mb-3 sm:mb-4">
               Relive the Magic
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
               Experience the spectacular moments from Ranvita's previous edition
             </p>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, rotateY: -15 }}
+            initial={{ opacity: 0, scale: 0.9, rotateY: 0 }}
             whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
             viewport={{ once: true }}
-            className="max-w-md mx-auto"
+            className="max-w-sm sm:max-w-md mx-auto"
             style={{ transformStyle: 'preserve-3d' }}
           >
             <div className="relative group">
               {/* Video container with cosmic frame */}
-              <div className="relative aspect-[9/16] rounded-3xl overflow-hidden border-4 border-primary/30 cosmic-glow">
+              <div className="relative aspect-[9/16] rounded-2xl sm:rounded-3xl overflow-hidden border-2 sm:border-4 border-primary/30 cosmic-glow">
                 <video 
                   className="w-full h-full object-cover"
                   controls
@@ -249,9 +249,9 @@ export const HeroSection = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
               </div>
 
-              {/* Floating decorative elements */}
+              {/* Floating decorative elements - Hidden on mobile */}
               <motion.div
-                className="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-primary/20 blur-2xl"
+                className="hidden sm:block absolute -top-6 -right-6 w-24 h-24 rounded-full bg-primary/20 blur-2xl"
                 animate={{
                   scale: [1, 1.2, 1],
                   opacity: [0.3, 0.6, 0.3],
@@ -263,7 +263,7 @@ export const HeroSection = () => {
                 }}
               />
               <motion.div
-                className="absolute -bottom-6 -left-6 w-32 h-32 rounded-full bg-secondary/20 blur-2xl"
+                className="hidden sm:block absolute -bottom-6 -left-6 w-32 h-32 rounded-full bg-secondary/20 blur-2xl"
                 animate={{
                   scale: [1.2, 1, 1.2],
                   opacity: [0.3, 0.6, 0.3],
@@ -284,7 +284,7 @@ export const HeroSection = () => {
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.5 }}
             viewport={{ once: true }}
-            className="text-center mt-12 text-sm text-muted-foreground italic"
+            className="text-center mt-8 sm:mt-10 md:mt-12 text-xs sm:text-sm text-muted-foreground italic px-4"
           >
             Replace the video source with your Ranvita video file
           </motion.p>

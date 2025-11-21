@@ -26,24 +26,44 @@ const staggerItem = {
 
 export const AboutSection = () => {
   return (
-    <section id="about" className="py-20 px-4 relative">
+    <section id="about" className="py-16 sm:py-20 md:py-24 px-4 relative">
       <div className="container mx-auto max-w-5xl">
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-          className="bg-card/50 backdrop-blur-md rounded-3xl p-12 border border-border cosmic-glow"
+          viewport={{ once: true, margin: "-50px" }}
+          className="bg-card/50 backdrop-blur-md rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 border border-border cosmic-glow"
         >
           <motion.h2 
             variants={staggerItem}
-            className="text-5xl md:text-6xl font-bold mb-8 text-center text-gradient-cosmic"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8 text-center text-gradient-cosmic"
             style={{ fontFamily: "'Cinzel', serif" }}
           >
             About CMR University
           </motion.h2>
           
-          <motion.div variants={staggerItem} className="space-y-6 text-lg text-foreground/90 leading-relaxed">
+          {/* Mobile optimized content */}
+          <motion.div variants={staggerItem} className="space-y-4 sm:space-y-5 md:space-y-6 text-sm sm:text-base md:text-lg text-foreground/90 leading-relaxed block sm:hidden">
+            <p>
+              <span className="text-primary font-semibold">CMR University</span>, established in 2016, is a multidisciplinary institution in Bangalore offering programs across engineering, management, law, sciences, and humanities.
+            </p>
+            
+            <p>
+              With a focus on <span className="text-secondary font-semibold">holistic development</span>, we blend academic rigor with experiential learning, fostering critical thinking and creativity.
+            </p>
+            
+            <p>
+              Events like <span className="text-primary font-semibold">Ranvita</span> showcase our dedication to nurturing talent, celebrating diversity, and creating platforms for students to shine.
+            </p>
+            
+            <p className="text-center font-semibold text-base sm:text-lg text-gradient-aurora pt-3 sm:pt-4">
+              Join us in shaping the future!
+            </p>
+          </motion.div>
+
+          {/* Desktop full content */}
+          <motion.div variants={staggerItem} className="space-y-6 text-lg text-foreground/90 leading-relaxed hidden sm:block">
             <p>
               <span className="text-primary font-semibold">CMR University</span>, established in 2016, is a multidisciplinary institution committed to excellence in education, research, and innovation. Located in the vibrant city of Bangalore, the university offers a wide range of undergraduate, postgraduate, and doctoral programs across diverse fields such as engineering, management, law, sciences, and humanities.
             </p>
