@@ -15,7 +15,7 @@ export const VideoSection = () => {
             Aftermovie
           </p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gradient-aurora">
-            Relive Ranvita 2025
+            Previous Ranvita Showcase
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground mt-4 max-w-2xl mx-auto">
             A quick look at the last Spectrum of Stardom finale—auditorium roars, sky lasers, and the moment the grand

@@ -7,7 +7,7 @@ export const WarpTransition = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setVisible(false);
-    }, 1200);
+    }, 900);
 
     return () => clearTimeout(timer);
   }, []);
@@ -19,9 +19,9 @@ export const WarpTransition = () => {
       className="fixed inset-0 z-[9999] pointer-events-none overflow-hidden"
       initial={{ opacity: 1 }}
       animate={{ opacity: 0 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
+      transition={{ duration: 0.4, ease: 'easeOut' }}
     >
-      {[...Array(24)].map((_, i) => (
+      {[...Array(18)].map((_, i) => (
         <motion.div
           key={i}
           className="absolute h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent"
@@ -37,7 +37,7 @@ export const WarpTransition = () => {
             x: [0, -window.innerWidth],
           }}
           transition={{
-            duration: 0.6,
+            duration: 0.45,
             delay: i * 0.015,
             ease: 'easeIn',
           }}
@@ -48,7 +48,7 @@ export const WarpTransition = () => {
         className="absolute inset-0 bg-gradient-radial from-primary/30 via-transparent to-transparent"
         initial={{ scale: 0.5, opacity: 0.8 }}
         animate={{ scale: 2.5, opacity: 0 }}
-        transition={{ duration: 0.7, ease: 'easeOut' }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
       />
     </motion.div>
   );

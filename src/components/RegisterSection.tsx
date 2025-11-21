@@ -47,9 +47,9 @@ export const RegisterSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="bg-card/50 backdrop-blur-md rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 border-2 border-primary aurora-glow"
+          className="bg-card/50 backdrop-blur-md rounded-2xl sm:rounded-3xl p-4 sm:p-8 md:p-10 lg:p-12 border-2 border-primary aurora-glow"
         >
-          <div className="aspect-video rounded-2xl sm:rounded-3xl relative overflow-hidden border border-primary/40 bg-gradient-to-br from-primary/10 via-background/20 to-secondary/10">
+          <div className="aspect-[4/3] sm:aspect-video rounded-2xl sm:rounded-3xl relative overflow-hidden border border-primary/40 bg-gradient-to-br from-primary/10 via-background/20 to-secondary/10">
             <motion.div
               className="absolute inset-0"
               style={{ background: 'radial-gradient(circle at 30% 30%, rgba(255,20,147,0.3), transparent 50%)' }}
@@ -57,16 +57,16 @@ export const RegisterSection = () => {
               transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
             />
             <motion.div
-              className="absolute -top-12 -right-12 h-48 w-48 bg-secondary/30 blur-3xl rounded-full"
+              className="hidden sm:block absolute -top-12 -right-12 h-48 w-48 bg-secondary/30 blur-3xl rounded-full"
               animate={{ x: [0, -10, 10, 0], y: [0, 10, -10, 0], opacity: [0.2, 0.5, 0.3, 0.4] }}
               transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
             />
             <motion.div
-              className="absolute -bottom-16 -left-8 h-40 w-40 bg-primary/30 blur-3xl rounded-full"
+              className="hidden sm:block absolute -bottom-16 -left-8 h-40 w-40 bg-primary/30 blur-3xl rounded-full"
               animate={{ scale: [1, 1.2, 0.9, 1], opacity: [0.35, 0.6, 0.4, 0.5] }}
               transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
             />
-            <div className="relative z-10 h-full flex flex-col items-center justify-center gap-4 text-center px-6">
+            <div className="relative z-10 h-full flex flex-col items-center justify-center gap-4 text-center px-4 sm:px-6">
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
@@ -77,7 +77,7 @@ export const RegisterSection = () => {
               <div className="space-y-1">
                 <p className="text-xs uppercase tracking-[0.4em] text-muted-foreground">Secure your slot</p>
                 <p className="text-2xl sm:text-3xl font-bold text-gradient-aurora">Ready for liftoff?</p>
-                <p className="text-sm sm:text-base text-muted-foreground max-w-md">
+                <p className="text-sm sm:text-base text-muted-foreground max-w-md mx-auto">
                   One tap takes you to the official Ranvita 2026 registration desk powered by GrayQuest.
                 </p>
               </div>
@@ -85,7 +85,7 @@ export const RegisterSection = () => {
                 href="https://rapid.grayquest.com/cmru-reg-master"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-3 rounded-full bg-primary/80 hover:bg-primary text-background px-6 py-3 text-sm font-semibold shadow-[0_15px_45px_rgba(255,20,147,0.4)]"
+                className="inline-flex items-center justify-center gap-3 rounded-full bg-primary/80 hover:bg-primary text-background px-6 py-3 text-sm font-semibold shadow-[0_15px_45px_rgba(255,20,147,0.4)] w-full sm:w-auto"
                 whileHover={{ scale: 1.04, y: -2 }}
                 whileTap={{ scale: 0.97 }}
               >

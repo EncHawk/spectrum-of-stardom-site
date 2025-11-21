@@ -112,8 +112,8 @@ export const HeroSection = () => {
           </div>
         </div>
 
-        {/* 3D Background Elements - Hidden on mobile for performance */}
-        <div className="absolute inset-0 opacity-20 sm:opacity-30 hidden sm:block">
+        {/* 3D Background Elements */}
+        <div className="absolute inset-0 opacity-10 sm:opacity-30 pointer-events-none">
           <Canvas camera={{ position: [0, 0, 8], fov: 75 }}>
             <ambientLight intensity={0.5} />
             <pointLight position={[10, 10, 10]} intensity={1} />
@@ -126,7 +126,7 @@ export const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 3.5 }}
+            transition={{ duration: 1, delay: 0.4 }}
             style={{
               rotateX,
               rotateY,
@@ -208,7 +208,7 @@ export const HeroSection = () => {
               className="max-w-2xl sm:max-w-3xl mx-auto mt-6 sm:mt-12 md:mt-16 space-y-4 px-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 4 }}
+              transition={{ duration: 1, delay: 0.8 }}
             >
               <p className="text-base sm:text-lg text-foreground/90 font-light tracking-wide">
                 Organised by <span className="text-primary font-semibold">CMR University</span> — an <span className="text-secondary font-semibold">Inter‑University Fest</span> celebrating talent, creativity and competitive spirit across campuses.
@@ -219,7 +219,7 @@ export const HeroSection = () => {
               className="mt-8 sm:mt-10 md:mt-12"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 4.3 }}
+              transition={{ duration: 0.8, delay: 1 }}
             >
               <motion.button
                 onClick={() => {
