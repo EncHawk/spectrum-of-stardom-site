@@ -2,30 +2,29 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
 export const WarpTransition = () => {
-  const [show, setShow] = useState(false);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setShow(true);
-    }, 2800);
+      setVisible(false);
+    }, 1200);
 
     return () => clearTimeout(timer);
   }, []);
 
-  if (!show) return null;
+  if (!visible) return null;
 
   return (
     <motion.div
       className="fixed inset-0 z-[9999] pointer-events-none overflow-hidden"
       initial={{ opacity: 1 }}
       animate={{ opacity: 0 }}
-      transition={{ duration: 1, delay: 1 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
     >
-      {/* Warp speed lines */}
-      {[...Array(30)].map((_, i) => (
+      {[...Array(24)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent"
+          className="absolute h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent"
           style={{
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
@@ -38,19 +37,18 @@ export const WarpTransition = () => {
             x: [0, -window.innerWidth],
           }}
           transition={{
-            duration: 0.8,
-            delay: i * 0.02,
+            duration: 0.6,
+            delay: i * 0.015,
             ease: 'easeIn',
           }}
         />
       ))}
-      
-      {/* Radial burst */}
+
       <motion.div
         className="absolute inset-0 bg-gradient-radial from-primary/30 via-transparent to-transparent"
-        initial={{ scale: 0, opacity: 1 }}
-        animate={{ scale: 3, opacity: 0 }}
-        transition={{ duration: 1, ease: 'easeOut' }}
+        initial={{ scale: 0.5, opacity: 0.8 }}
+        animate={{ scale: 2.5, opacity: 0 }}
+        transition={{ duration: 0.7, ease: 'easeOut' }}
       />
     </motion.div>
   );
