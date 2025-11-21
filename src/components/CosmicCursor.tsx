@@ -11,6 +11,7 @@ const getInitialPosition = () =>
 export const CosmicCursor = () => {
   const [isActive, setIsActive] = useState(false);
   const [inputMode, setInputMode] = useState<'mouse' | 'touch'>('mouse');
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [trail, setTrail] = useState<{ x: number; y: number; id: number }[]>([]);
   const timeoutRef = useRef<number>();
   const pos = useRef(getInitialPosition());
@@ -33,6 +34,15 @@ export const CosmicCursor = () => {
     setIsActive(true);
     scheduleIdle();
   };
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const handle = () => setPrefersReducedMotion(mq.matches);
+    handle();
+    mq.addEventListener('change', handle);
+    return () => mq.removeEventListener('change', handle);
+  }, []);
 
   useEffect(() => {
     const detectInput = () => {
@@ -68,24 +78,8 @@ export const CosmicCursor = () => {
     };
   }, [inputMode, isActive]);
 
-  if (inputMode === 'touch') {
-    return (
-      <AnimatePresence>
-        {isActive && (
-          <motion.div
-            className="fixed w-12 h-12 rounded-full pointer-events-none z-[9999] border-2 border-secondary/60 bg-secondary/10 backdrop-blur-sm"
-            style={{
-              left: smoothX.get() - 24,
-              top: smoothY.get() - 24,
-            }}
-            initial={{ scale: 0.8, opacity: 0.6 }}
-            animate={{ scale: 1, opacity: 0.2 }}
-            exit={{ opacity: 0, scale: 0.6 }}
-            transition={{ duration: 0.3 }}
-          />
-        )}
-      </AnimatePresence>
-    );
+  if (inputMode === 'touch' || prefersReducedMotion) {
+    return null;
   }
 
   return (

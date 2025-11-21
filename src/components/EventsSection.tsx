@@ -97,7 +97,7 @@ export const EventsSection = () => {
           </p>
         </motion.div>
 
-        <Tabs value={activeCluster} onValueChange={setActiveCluster} className="space-y-6">
+        <Tabs value={activeCluster} onValueChange={setActiveCluster} className="space-y-4 sm:space-y-6">
           <TabsList className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-transparent p-0 w-full max-w-2xl mx-auto">
             {eventClusters.map((cluster) => (
               <TabsTrigger
@@ -114,7 +114,7 @@ export const EventsSection = () => {
             const slides = chunkEvents(cluster.events, 3);
 
             return (
-              <TabsContent key={cluster.id} value={cluster.id} className="mt-0">
+              <TabsContent key={cluster.id} value={cluster.id} className="mt-6 sm:mt-8">
                 <div
                   className={`rounded-3xl border border-border/60 bg-gradient-to-br ${cluster.gradient} backdrop-blur-2xl p-6 sm:p-8`}
                 >

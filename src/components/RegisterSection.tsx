@@ -66,32 +66,42 @@ export const RegisterSection = () => {
               animate={{ scale: [1, 1.2, 0.9, 1], opacity: [0.35, 0.6, 0.4, 0.5] }}
               transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
             />
-            <div className="relative z-10 h-full flex flex-col items-center justify-center gap-4 text-center px-4 sm:px-6">
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                className="p-3 rounded-full bg-background/40 border border-primary/40 shadow-inner"
-              >
-                <Rocket className="w-10 h-10 sm:w-12 sm:h-12 text-primary" />
-              </motion.div>
-              <div className="space-y-1">
-                <p className="text-xs uppercase tracking-[0.4em] text-muted-foreground">Secure your slot</p>
-                <p className="text-2xl sm:text-3xl font-bold text-gradient-aurora">Ready for liftoff?</p>
-                <p className="text-sm sm:text-base text-muted-foreground max-w-md mx-auto">
-                  One tap takes you to the official Ranvita 2026 registration desk powered by GrayQuest.
+            <div className="relative z-10 h-full flex flex-col justify-between gap-4 text-center px-4 sm:px-6 py-6">
+              <div className="flex flex-col items-center gap-3">
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                  className="p-3 rounded-full bg-background/40 border border-primary/40 shadow-inner"
+                >
+                  <Rocket className="w-10 h-10 sm:w-12 sm:h-12 text-primary" />
+                </motion.div>
+                <div className="space-y-1">
+                  <p className="text-xs uppercase tracking-[0.4em] text-muted-foreground">Secure your slot</p>
+                  <p className="text-2xl sm:text-3xl font-bold text-gradient-aurora">Ready for liftoff?</p>
+                </div>
+              </div>
+              <div className="text-sm sm:text-base text-muted-foreground space-y-2">
+                <p>One tap takes you straight to the GrayQuest portal.</p>
+                <p className="text-xs sm:text-sm uppercase tracking-[0.3em] text-muted-foreground/70">
+                  Works best on Chrome / Safari
                 </p>
               </div>
-              <motion.a
-                href="https://rapid.grayquest.com/cmru-reg-master"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center gap-3 rounded-full bg-primary/80 hover:bg-primary text-background px-6 py-3 text-sm font-semibold shadow-[0_15px_45px_rgba(255,20,147,0.4)] w-full sm:w-auto"
-                whileHover={{ scale: 1.04, y: -2 }}
-                whileTap={{ scale: 0.97 }}
-              >
-                Launch registration
-                <ArrowUpRight className="h-4 w-4" />
-              </motion.a>
+              <div className="flex flex-col gap-2">
+                <motion.a
+                  href="https://rapid.grayquest.com/cmru-reg-master"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center gap-3 rounded-full bg-primary/80 hover:bg-primary text-background px-6 py-3 text-sm font-semibold shadow-[0_15px_45px_rgba(255,20,147,0.4)] w-full"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  Launch registration
+                  <ArrowUpRight className="h-4 w-4" />
+                </motion.a>
+                <p className="text-[11px] text-muted-foreground">
+                  Portal open 24/7 • Payment confirmation emailed instantly
+                </p>
+              </div>
             </div>
           </div>
         </motion.div>

@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform, useInView } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
@@ -71,6 +71,7 @@ function NebulaParticles() {
 
 export const HeroSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const heroInView = useInView(containerRef, { margin: '-20% 0px -20% 0px', amount: 0.3 });
   
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -114,12 +115,14 @@ export const HeroSection = () => {
 
         {/* 3D Background Elements */}
         <div className="absolute inset-0 opacity-10 sm:opacity-30 pointer-events-none">
-          <Canvas camera={{ position: [0, 0, 8], fov: 75 }} dpr={[1, 1.5]}>
-            <ambientLight intensity={0.5} />
-            <pointLight position={[10, 10, 10]} intensity={1} />
-            <OrbitingRing />
-            <NebulaParticles />
-          </Canvas>
+          {heroInView && (
+            <Canvas camera={{ position: [0, 0, 8], fov: 75 }} dpr={[1, 1.5]}>
+              <ambientLight intensity={0.5} />
+              <pointLight position={[10, 10, 10]} intensity={1} />
+              <OrbitingRing />
+              <NebulaParticles />
+            </Canvas>
+          )}
         </div>
 
         <div className="container mx-auto text-center relative z-10 px-2 sm:px-6">
