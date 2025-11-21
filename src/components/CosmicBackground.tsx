@@ -6,19 +6,21 @@ import * as THREE from 'three';
 function StarField() {
   const ref = useRef<THREE.Points>(null!);
   
-  const particlesCount = 2000;
+  // REDUCED COUNT FROM 2000 TO 700 FOR PERFORMANCE
+  const particlesCount = 700; 
   const positions = new Float32Array(particlesCount * 3);
   
   for (let i = 0; i < particlesCount; i++) {
-    positions[i * 3] = (Math.random() - 0.5) * 50;
-    positions[i * 3 + 1] = (Math.random() - 0.5) * 50;
-    positions[i * 3 + 2] = (Math.random() - 0.5) * 50;
+    positions[i * 3] = (Math.random() - 0.5) * 40;
+    positions[i * 3 + 1] = (Math.random() - 0.5) * 40;
+    positions[i * 3 + 2] = (Math.random() - 0.5) * 40;
   }
 
   useFrame((state) => {
     if (ref.current) {
-      ref.current.rotation.x = state.clock.getElapsedTime() * 0.02;
-      ref.current.rotation.y = state.clock.getElapsedTime() * 0.03;
+      // Reduced rotation speed slightly for smoother feel
+      ref.current.rotation.x = state.clock.getElapsedTime() * 0.015; 
+      ref.current.rotation.y = state.clock.getElapsedTime() * 0.02;
     }
   });
 
@@ -27,7 +29,7 @@ function StarField() {
       <PointMaterial
         transparent
         color="#ff69b4"
-        size={0.05}
+        size={0.06}
         sizeAttenuation={true}
         depthWrite={false}
         blending={THREE.AdditiveBlending}
@@ -38,18 +40,14 @@ function StarField() {
 
 export const CosmicBackground = () => {
   return (
-    <div className="fixed inset-0 -z-10">
-      <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
+    <div className="fixed inset-0 -z-10 bg-[#050508]"> {/* Added base color to prevent white flashes */}
+      <Canvas camera={{ position: [0, 0, 5], fov: 75 }} dpr={[1, 1.5]}> {/* Cap DPR for mobile */}
         <ambientLight intensity={0.5} />
         <StarField />
       </Canvas>
       
-      {/* Additional gradient overlays */}
-      <div className="absolute inset-0 opacity-30" style={{ background: 'var(--gradient-nebula)' }} />
-      <div 
-        className="absolute top-0 left-0 w-full h-full opacity-20"
-        style={{ background: 'var(--gradient-starlight)' }}
-      />
+      <div className="absolute inset-0 opacity-40" style={{ background: 'var(--gradient-nebula)' }} />
+      <div className="absolute top-0 left-0 w-full h-full opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-yellow-500/10 via-transparent to-transparent" />
     </div>
   );
 };

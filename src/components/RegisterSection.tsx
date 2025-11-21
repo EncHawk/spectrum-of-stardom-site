@@ -1,132 +1,107 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { Rocket, ArrowUpRight } from 'lucide-react';
 
 export const RegisterSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [0, 10]);
 
   return (
-    <section id="register-section" ref={ref} className="py-16 sm:py-20 md:py-24 px-4 relative">
+    <section id="register-section" ref={ref} className="py-24 sm:py-32 px-4 relative z-20 overflow-hidden">
       <div className="container mx-auto max-w-5xl">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-8 sm:mb-10 md:mb-12"
+        <motion.div 
+          style={{ y }}
+          className="relative z-10"
         >
-          <motion.h2 
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-gradient-aurora"
-            style={{ fontFamily: "'Cinzel', serif" }}
-          >
-            Launch Your Stardom
-          </motion.h2>
-          
-          <motion.p
-            className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-foreground/90 max-w-3xl mx-auto leading-relaxed px-4"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            Don't miss the <span className="text-primary font-bold">ultimate cultural extravaganza</span> of the year! Whether you're here to compete or cheer, Ranvita 2026 is your gateway to an unforgettable journey through the <span className="text-secondary font-bold">Spectrum of Stardom</span>.
-          </motion.p>
-          
           <motion.div
-            className="flex items-center justify-center gap-2 mt-4 sm:mt-6 text-accent"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-12"
           >
-            <Rocket className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
-            <p className="text-lg sm:text-xl md:text-2xl font-bold">Your constellation awaits!</p>
+            <h2 
+              className="text-4xl sm:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-accent animate-pulse-glow"
+              style={{ fontFamily: "'Cinzel', serif" }}
+            >
+              Launch Your Stardom
+            </h2>
+            
+            <p className="text-lg md:text-xl text-foreground/90 max-w-2xl mx-auto leading-relaxed">
+              The galaxy awaits. Secure your spot at the <span className="text-primary font-bold">Ultimate Cultural Extravaganza</span>.
+            </p>
           </motion.div>
-        </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="bg-card/50 backdrop-blur-md rounded-2xl sm:rounded-3xl p-4 sm:p-8 md:p-10 lg:p-12 border-2 border-primary aurora-glow max-w-xl mx-auto"
-        >
-          <div className="aspect-[4/3] sm:aspect-video rounded-2xl sm:rounded-3xl relative overflow-hidden border border-primary/40 bg-gradient-to-br from-primary/10 via-background/20 to-secondary/10">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ type: "spring", duration: 1 }}
+            className="relative max-w-xl mx-auto"
+          >
+            {/* Liquid Motion Background Effect */}
             <motion.div
-              className="absolute inset-0"
-              style={{ background: 'radial-gradient(circle at 30% 30%, rgba(255,20,147,0.3), transparent 50%)' }}
-              animate={{ scale: [1, 1.1, 0.95, 1], opacity: [0.4, 0.7, 0.5, 0.6] }}
-              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+              className="absolute -inset-4 bg-gradient-to-r from-primary via-purple-500 to-secondary opacity-30 blur-2xl -z-10"
+              animate={{
+                borderRadius: ["30% 70% 70% 30% / 30% 30% 70% 70%", "60% 40% 30% 70% / 60% 30% 70% 40%", "30% 70% 70% 30% / 30% 30% 70% 70%"],
+              }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
             />
-            <motion.div
-              className="hidden sm:block absolute -top-12 -right-12 h-48 w-48 bg-secondary/30 blur-3xl rounded-full"
-              animate={{ x: [0, -10, 10, 0], y: [0, 10, -10, 0], opacity: [0.2, 0.5, 0.3, 0.4] }}
-              transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
-            />
-            <motion.div
-              className="hidden sm:block absolute -bottom-16 -left-8 h-40 w-40 bg-primary/30 blur-3xl rounded-full"
-              animate={{ scale: [1, 1.2, 0.9, 1], opacity: [0.35, 0.6, 0.4, 0.5] }}
-              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-            />
-            <div className="relative z-10 h-full flex flex-col justify-between gap-4 text-center px-4 sm:px-6 py-6">
-              <div className="flex flex-col items-center gap-3">
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                  className="p-3 rounded-full bg-background/40 border border-primary/40 shadow-inner"
+
+            <div className="bg-black/60 backdrop-blur-xl rounded-[2rem] border border-white/20 p-1">
+              <div className="rounded-[1.8rem] bg-gradient-to-b from-white/5 to-transparent p-8 sm:p-12 text-center border border-white/5">
+                
+                <motion.div 
+                  className="inline-flex p-5 rounded-full bg-gradient-to-br from-primary/20 to-transparent border border-primary/30 mb-8 relative"
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.8 }}
                 >
-                  <Rocket className="w-10 h-10 sm:w-12 sm:h-12 text-primary" />
+                  <Rocket className="w-12 h-12 text-primary drop-shadow-[0_0_15px_rgba(255,20,147,0.5)]" />
+                  <motion.div
+                    className="absolute inset-0 rounded-full border-2 border-t-primary/60 border-transparent"
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                  />
                 </motion.div>
-                <div className="space-y-1">
-                  <p className="text-xs uppercase tracking-[0.4em] text-muted-foreground">Secure your slot</p>
-                  <p className="text-2xl sm:text-3xl font-bold text-gradient-aurora">Ready for liftoff?</p>
-                </div>
-              </div>
-              <div className="text-sm sm:text-base text-muted-foreground space-y-2">
-                <p>One tap takes you straight to the GrayQuest portal.</p>
-                <p className="text-xs sm:text-sm uppercase tracking-[0.3em] text-muted-foreground/70">
-                  Works best on Chrome / Safari
+
+                <h3 className="text-3xl font-bold text-white mb-3">Ready for Liftoff?</h3>
+                <p className="text-gray-400 mb-10">
+                  One tap takes you straight to the GrayQuest portal.
                 </p>
-              </div>
-              <div className="flex flex-col gap-2">
+
                 <motion.a
                   href="https://rapid.grayquest.com/cmru-reg-master"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center justify-center gap-3 rounded-full bg-primary/80 hover:bg-primary text-background px-6 py-3 text-sm font-semibold shadow-[0_15px_45px_rgba(255,20,147,0.4)] w-full"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.97 }}
+                  className="group relative inline-flex w-full sm:w-auto items-center justify-center gap-3 rounded-full bg-white text-black px-8 py-4 text-lg font-bold shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)] overflow-hidden"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  Launch registration
-                  <ArrowUpRight className="h-4 w-4" />
+                  <span className="relative z-10 flex items-center gap-2">
+                    Launch Registration <ArrowUpRight className="w-5 h-5" />
+                  </span>
+                  {/* Button Hover Fill Effect */}
+                  <div className="absolute inset-0 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left z-0" />
+                  <span className="absolute inset-0 z-10 flex items-center justify-center gap-2 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                    Launch Registration <ArrowUpRight className="w-5 h-5" />
+                  </span>
                 </motion.a>
-                <p className="text-[11px] text-muted-foreground">
-                  Portal open 24/7 • Payment confirmation emailed instantly
-                </p>
+
+                <div className="mt-6 flex items-center justify-center gap-4 text-xs text-gray-500 font-mono">
+                  <span>● PORTAL OPEN 24/7</span>
+                  <span>● INSTANT CONFIRMATION</span>
+                </div>
               </div>
             </div>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-8 sm:mt-10 md:mt-12 text-center space-y-3 sm:space-y-4 px-4"
-        >
-          <p className="text-sm sm:text-base md:text-lg text-muted-foreground">
-            Follow us on{' '}
-            <a
-              href="https://www.instagram.com/ranvita.cmru?igsh=NzV2dWd4ZGg2NDV5"
-              target="_blank"
-              rel="noreferrer"
-              className="text-primary hover:text-secondary transition-colors underline"
-            >
-              @ranvita.cmru
-            </a>{' '}
-            for live updates and drop-ins.
-          </p>
-          <p className="text-xs sm:text-sm text-muted-foreground">
-            Limited slots available. Register early to secure your spot!
-          </p>
+          </motion.div>
         </motion.div>
       </div>
     </section>
