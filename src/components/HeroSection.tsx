@@ -10,83 +10,148 @@ export const HeroSection = () => {
     offset: ["start start", "end start"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  // Parallax effects
+  const y = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
-    // Changed min-h-screen to min-h-[100svh] to fix mobile address bar jump
-    <section ref={ref} className="relative min-h-[100svh] flex items-center justify-center overflow-hidden pt-20">
-      {/* Dynamic Starfield Background (Lightweight) */}
+    <section ref={ref} className="relative h-[100svh] w-full flex flex-col items-center justify-center overflow-hidden bg-black">
+      {/* Import Cinzel Font */}
+      <style>
+        {`
+          @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&display=swap');
+          .font-luxury { font-family: 'Cinzel', serif; }
+        `}
+      </style>
+
+      {/* --- Dynamic Starfield Background --- */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        {/* Capped dpr for mobile performance */}
         <Canvas dpr={[1, 1.5]}>
           <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
         </Canvas>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/90" />
       </div>
 
-      {/* Giant Background Year Text */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden z-0 select-none">
-        <span className="text-[25vw] font-bold text-white/5 tracking-tighter blur-sm transform scale-y-150 translate-y-10">
-          2026
-        </span>
+      {/* --- BACKGROUND COMPONENT: "COSMIC STARGATE" --- */}
+      {/* Replaces text with a massive, slow-rotating geometric halo system to give 'life' to the main logo */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden">
+        {/* Outer Ring */}
+        <motion.div 
+          className="absolute w-[140vw] h-[140vw] sm:w-[50vw] sm:h-[50vw] border-[1px] border-white/5 rounded-full"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
+        />
+        {/* Middle Dashed Ring */}
+        <motion.div 
+          className="absolute w-[110vw] h-[110vw] sm:w-[40vw] sm:h-[40vw] border-[2px] border-dashed border-white/10 rounded-full"
+          animate={{ rotate: -360 }}
+          transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
+        />
+        {/* Inner Glowing Ring */}
+        <motion.div 
+          className="absolute w-[80vw] h-[80vw] sm:w-[30vw] sm:h-[30vw] border-[1px] border-primary/20 rounded-full shadow-[0_0_100px_rgba(255,20,147,0.1)]"
+          animate={{ scale: [1, 1.05, 1], opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
       </div>
 
+      {/* --- MAIN CONTENT CONTAINER --- */}
       <motion.div 
         style={{ y, opacity }}
-        className="container relative z-10 px-4 text-center will-change-transform"
+        className="relative z-10 w-full h-full flex flex-col items-center justify-center py-2 will-change-transform"
       >
-        <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="relative inline-block"
-        >
-          {/* The Main Title - Matches the Image Style with font-ranvita */}
-          <h1 className="font-ranvita text-[5rem] sm:text-[8rem] md:text-[10rem] lg:text-[12rem] leading-[0.8] text-transparent bg-clip-text bg-gradient-to-b from-[#ff69b4] via-[#ff1493] to-[#800080] drop-shadow-[0_0_15px_rgba(255,20,147,0.6)] select-none">
-            RANVITA
-          </h1>
+        
+        {/* WRAPPER: All elements use absolute positioning to prevent pushing */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center w-full h-full">
           
-          {/* Decorative glow behind the text */}
+          {/* --- 2. Main Title: Ranvita Logo (THE HERO) --- */}
+          {/* BACKGROUND LAYER: Lower z-index so it sits behind text, only fills empty spaces */}
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none"
+          >
+            {/* Core Nebula Glow */}
+            <motion.div 
+              className="absolute inset-0 flex items-center justify-center pointer-events-none"
+            >
+               <motion.div 
+                 className="w-[100%] h-[100%] bg-gradient-to-r from-primary/30 via-purple-600/20 to-secondary/30 rounded-full blur-[60px] sm:blur-[100px]"
+                 animate={{ 
+                   scale: [1, 1.2, 1],
+                   opacity: [0.4, 0.7, 0.4],
+                   rotate: [0, 180, 360]
+                 }}
+                 transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+               />
+            </motion.div>
+            
+            {/* The Logo Image - Massive on PC, covers left and right, behind text */}
+            <motion.img 
+              src="/ranvita-logo.png" 
+              alt="RANVITA 2026"
+              className="w-[95vw] sm:w-[98vw] md:w-[100vw] lg:w-[100vw] xl:w-[100vw] max-w-none h-auto max-h-[55vh] md:max-h-[80vh] lg:max-h-[85vh] object-contain object-center drop-shadow-[0_0_50px_rgba(255,20,147,0.4)]"
+              animate={{ y: [-5, 5, -5] }} 
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </motion.div>
+
+          {/* --- 1. CMR University Logo --- */}
+          {/* VISIBILITY: Moved up to top-8% on PC to give more room to center logo */}
+          <motion.div
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="absolute z-50 pointer-events-none top-[calc(50%-22vh)] sm:top-[calc(50%-25vh)] md:top-[8%]"
+          >
+            <img 
+              src="/cmr-logo.png" 
+              alt="CMR University" 
+              className="h-32 sm:h-40 md:h-52 w-auto object-contain drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]"
+            />
+          </motion.div>
+
+          {/* --- 3. Subtitle --- */}
+          {/* POSITION FIX: Brought down significantly on PC (bottom-[calc(5%+90px)]) to clear the logo overlap */}
           <motion.div 
-            className="absolute -inset-10 bg-primary/20 blur-[100px] -z-10 rounded-full opacity-60"
-            animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.6, 0.4] }}
-            transition={{ duration: 4, repeat: Infinity }}
-          />
-        </motion.div>
+            className="absolute z-40 text-center space-y-2 w-full px-4 bottom-[calc(10%+60px)] sm:bottom-[calc(10%+80px)] md:bottom-[calc(5%+90px)]"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          >
+            <div className="h-px w-24 bg-gradient-to-r from-transparent via-white/40 to-transparent mx-auto mb-2" />
+            <p className="text-xs sm:text-lg md:text-2xl text-white/90 font-luxury tracking-widest uppercase leading-relaxed drop-shadow-md">
+              An Inter‑University Fest celebrating <br className="hidden sm:block"/>
+              <span className="text-primary font-bold">talent</span> & <span className="text-secondary font-bold">creativity</span>
+            </p>
+          </motion.div>
 
-        <motion.div 
-          className="max-w-3xl mx-auto mt-10 sm:mt-16 space-y-6 px-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-        >
-          <p className="text-lg sm:text-xl md:text-2xl text-foreground/90 font-light tracking-wide leading-relaxed">
-            Organised by <span className="text-primary font-semibold">CMR University</span>
-          </p>
-          <div className="h-px w-24 bg-gradient-to-r from-transparent via-primary/50 to-transparent mx-auto" />
-          <p className="text-base sm:text-lg text-muted-foreground font-light tracking-wider uppercase">
-            An Inter‑University Fest celebrating talent, creativity and competitive spirit across campuses.
-          </p>
-        </motion.div>
+        </div>
 
+        {/* --- 4. CTA Button --- */}
+        {/* Lowered to bottom-5% on PC to prevent crowding */}
         <motion.div
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.8 }}
-          className="mt-12"
+          className="absolute bottom-[10%] md:bottom-[5%] z-50"
         >
           <button 
             onClick={() => document.getElementById('register-section')?.scrollIntoView({ behavior: 'smooth' })}
-            className="group relative px-10 py-4 bg-transparent overflow-hidden rounded-full border border-white/20 transition-all hover:border-primary/50 hover:shadow-[0_0_30px_rgba(255,20,147,0.4)]"
+            className="group relative px-10 py-3 sm:px-14 sm:py-4 bg-black/40 backdrop-blur-md overflow-hidden rounded-full border border-white/20 transition-all hover:border-primary/60 hover:shadow-[0_0_40px_rgba(255,20,147,0.5)]"
           >
-            <div className="absolute inset-0 bg-primary/10 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300" />
-            <span className="relative font-bold uppercase tracking-widest text-sm text-white group-hover:text-white transition-colors">
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-secondary/30 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300" />
+            <span className="relative font-bold font-luxury uppercase tracking-[0.2em] text-xs sm:text-sm text-white group-hover:text-white transition-colors">
               Enter the Cosmos
             </span>
           </button>
         </motion.div>
+
       </motion.div>
+
+      {/* --- BOTTOM GRADIENT --- */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none z-20" />
     </section>
   );
 };

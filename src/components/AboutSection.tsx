@@ -26,6 +26,8 @@ const stats = [
 export const AboutSection = () => {
   return (
     <section id="about" className="py-24 px-4 relative z-10">
+      {/* Smooth fade-in from HeroSection */}
+      <div className="absolute top-0 left-0 right-0 h-32 md:h-48 bg-gradient-to-b from-[#050508] to-transparent pointer-events-none -z-10" />
       <div className="container mx-auto max-w-6xl">
         
         {/* Header Section */}

@@ -5,7 +5,8 @@ import { HeroSection } from '@/components/HeroSection';
 import { AboutSection } from '@/components/AboutSection';
 import { OsaSection } from '@/components/OsaSection';
 import { EventsSection } from '@/components/EventsSection';
-import { ScheduleSection } from '@/components/ScheduleSection';
+// import { ScheduleSection } from '@/components/ScheduleSection'; // REMOVE THIS
+import { ArtistSection } from '@/components/ArtistSection'; // IMPORT THIS
 import { RegisterSection } from '@/components/RegisterSection';
 import { VideoSection } from '@/components/VideoSection';
 import { FloatingRegister } from '@/components/FloatingRegister';
@@ -23,7 +24,10 @@ const Index = () => {
         <AboutSection />
         <OsaSection />
         <EventsSection />
-        <ScheduleSection />
+        
+        {/* REPLACED SCHEDULE WITH ARTISTS */}
+        <ArtistSection /> 
+        
         <RegisterSection />
         <VideoSection />
       </main>
