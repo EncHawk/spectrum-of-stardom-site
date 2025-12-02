@@ -126,7 +126,7 @@ export const ArtistSection = () => {
               <motion.div variants={textStagger} className="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-pink-500/30 bg-pink-950/40 backdrop-blur-xl mb-6 md:mb-8 shadow-[0_0_30px_rgba(236,72,153,0.15)]">
                 <Calendar className="w-4 h-4 text-pink-400" />
                 <div className="h-4 w-px bg-pink-500/30" />
-                <span className="text-pink-100 font-bold uppercase tracking-[0.2em] text-xs">Day 01 • Aurora</span>
+                <span className="text-pink-100 font-bold uppercase tracking-[0.2em] text-xs">Day 02 • Aurora</span>
               </motion.div>
 
               <div className="relative">
